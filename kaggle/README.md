@@ -44,9 +44,20 @@ kaggle/working/agrishield_outputs/
 
 ## Files
 
+- `AgriShield_Kaggle_Core_Baseline.ipynb`: self-contained Kaggle notebook for training and exporting artifacts.
 - `agrishield_kaggle_core.py`: Kaggle-ready baseline pipeline.
 - `sample_data/advisory_zones.csv`: v1 pilot zone metadata.
 - `sample_data/hazard_observations.csv`: sample Noru-style hazard panel.
+
+## Fastest Kaggle Flow
+
+1. Open Kaggle.
+2. Create a new notebook.
+3. Upload `AgriShield_Kaggle_Core_Baseline.ipynb`.
+4. Run all cells.
+5. Download artifacts from `/kaggle/working/agrishield_outputs/`.
+
+The notebook is self-contained. If you do not attach any Kaggle dataset, it will train on the embedded sample data. If you attach a dataset named `agrishield-core` containing `advisory_zones.csv` and `hazard_observations.csv`, it will use that dataset instead.
 
 ## Important Claim Boundary
 
