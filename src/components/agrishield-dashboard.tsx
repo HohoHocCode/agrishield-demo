@@ -362,6 +362,7 @@ function AIModelSnapshot({ assessment }: { assessment: ReturnType<typeof assessZ
   const generatedDate = new Intl.DateTimeFormat("en", {
     dateStyle: "medium",
     timeStyle: "short",
+    timeZone: "UTC",
   }).format(new Date(modelSnapshot.generatedAt));
 
   return (
@@ -434,7 +435,7 @@ function AIModelSnapshot({ assessment }: { assessment: ReturnType<typeof assessZ
                 {delta === null ? "n/a" : `${delta >= 0 ? "+" : ""}${delta.toFixed(1)}`}
               </span>
             </p>
-            <p>Snapshot generated: {generatedDate}</p>
+            <p>Snapshot generated: {generatedDate} UTC</p>
             <p>Label source: {prediction?.labelSource.replaceAll("_", " ") ?? "n/a"}</p>
           </div>
         </div>
