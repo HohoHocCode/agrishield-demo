@@ -39,6 +39,13 @@ The risk score is a transparent decision-support indicator and does not replace 
 - [3-minute demo script](docs/demo-script-3min.md)
 - [Judge Q&A prep](docs/judge-qna.md)
 - [Roadmap V2](docs/roadmap-v2.md)
+- [Core AI and data plan](docs/core-ai-data-plan.md)
+
+## Kaggle Core Workspace
+
+The AI/data-processing baseline lives in [`kaggle/`](kaggle/).
+
+It includes a Kaggle-ready script, sample advisory-zone data, sample hazard observations, weak-label generation, baseline model training, metrics, and `risk_export_for_app.json` export for future web-app integration.
 
 ## Run Locally
 

@@ -1,0 +1,7 @@
+zone_id,zone_name,current_admin,legacy_admin,lat,lng,rice_area_ha,dominant_season,floodplain_exposure,coastal_wind_exposure,drainage_stress,elevation_min_m,elevation_max_m
+da-nang-hoa-vang,Hoa Vang upland-irrigated belt,Da Nang City,"Former Hoa Vang district, Da Nang",16.026,108.120,3150,Summer-Autumn rice,medium,medium,medium,12,90
+da-nang-dien-ban-hoi-an,Dien Ban - Hoi An lowland rice belt,Da Nang City,"Former Quang Nam: Dien Ban, Hoi An",15.891,108.334,7200,Winter-Spring and Summer-Autumn rice,high,high,medium,0,8
+da-nang-thang-binh-coastal,Thang Binh coastal plain,Da Nang City,"Former Quang Nam: Thang Binh",15.678,108.378,9600,Summer-Autumn rice,high,high,high,1,15
+da-nang-dai-loc-vu-gia,Dai Loc - Vu Gia river corridor,Da Nang City,"Former Quang Nam: Dai Loc",15.880,107.980,8100,Winter-Spring and Summer-Autumn rice,high,medium,high,5,40
+hue-lagoon-rice,Hue lagoon rice and aquaculture edge,Hue City,Former Thua Thien Hue lagoon communes,16.490,107.630,6900,Winter-Spring rice,high,medium,medium,0,10
+hue-phong-dien-buffer,Phong Dien inland buffer,Hue City,"Former Phong Dien district, Thua Thien Hue",16.580,107.390,5400,Summer-Autumn rice,medium,low,medium,8,55

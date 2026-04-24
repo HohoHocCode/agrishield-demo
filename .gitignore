@@ -20,6 +20,13 @@
 # production
 /build
 
+# kaggle/local model outputs
+/kaggle/working/
+/kaggle/outputs/
+*.joblib
+__pycache__/
+*.py[cod]
+
 # misc
 .DS_Store
 *.pem
