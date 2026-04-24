@@ -45,7 +45,10 @@ kaggle/working/agrishield_outputs/
 ## Files
 
 - `AgriShield_Kaggle_Core_Baseline.ipynb`: self-contained Kaggle notebook for training and exporting artifacts.
+- `AgriShield_Real_Data_Preparation.ipynb`: optional pre-training notebook for rainfall, storm-track, and observed-impact data.
 - `agrishield_kaggle_core.py`: Kaggle-ready baseline pipeline.
+- `agrishield_real_data_prep.py`: creates a training-ready enriched hazard panel from optional real-data tables.
+- `data_contracts/`: CSV templates for the next real-data collection step.
 - `sample_data/advisory_zones.csv`: v1 pilot zone metadata.
 - `sample_data/hazard_observations.csv`: sample Noru-style hazard panel.
 
@@ -70,6 +73,38 @@ If Kaggle does not show the nested output folder clearly, run the final packagin
 ```
 
 The ZIP is the easiest file to download from the right-side Output panel.
+
+## Real-Data Prep Flow
+
+Use this when the team has any real rainfall, storm-track, or impact-label rows.
+
+Expected input dataset:
+
+```text
+advisory_zones.csv
+hazard_observations.csv
+rainfall_daily.csv          optional
+event_labels.csv            optional
+storm_track_points.csv      optional
+```
+
+Run:
+
+```text
+AgriShield_Real_Data_Preparation.ipynb
+```
+
+It writes:
+
+```text
+/kaggle/working/agrishield_real_data_ready/
+/kaggle/working/agrishield_real_data_ready.zip
+```
+
+The generated folder can be used directly by `agrishield_kaggle_core.py`. The
+core script now checks `AGRISHIELD_INPUT_DIR`,
+`/kaggle/working/agrishield_real_data_ready`, and then the usual Kaggle input
+folders.
 
 ## Important Claim Boundary
 

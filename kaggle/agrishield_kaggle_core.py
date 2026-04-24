@@ -77,10 +77,35 @@ def project_dir() -> Path:
 
 
 def resolve_paths() -> tuple[Path, Path]:
-    kaggle_input = Path("/kaggle/input/agrishield-core")
     base = project_dir()
 
-    input_dir = kaggle_input if kaggle_input.exists() else base / "sample_data"
+    candidates = []
+    env_input = os.environ.get("AGRISHIELD_INPUT_DIR")
+    if env_input:
+        candidates.append(Path(env_input))
+
+    candidates.extend(
+        [
+            Path("/kaggle/working/agrishield_real_data_ready"),
+            Path("/kaggle/input/agrishield-real-data-ready"),
+            Path("/kaggle/input/agrishield-real-data"),
+            Path("/kaggle/input/agrishield-core"),
+            base / "sample_data",
+        ]
+    )
+
+    input_dir = None
+    for candidate in candidates:
+        if (
+            candidate.exists()
+            and (candidate / "advisory_zones.csv").exists()
+            and (candidate / "hazard_observations.csv").exists()
+        ):
+            input_dir = candidate
+            break
+
+    if input_dir is None:
+        input_dir = base / "sample_data"
 
     if Path("/kaggle/working").exists():
         output_dir = Path("/kaggle/working/agrishield_outputs")

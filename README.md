@@ -41,12 +41,21 @@ The risk score is a transparent decision-support indicator and does not replace 
 - [Judge Q&A prep](docs/judge-qna.md)
 - [Roadmap V2](docs/roadmap-v2.md)
 - [Core AI and data plan](docs/core-ai-data-plan.md)
+- [Real-data upgrade plan](docs/real-data-upgrade-plan.md)
 
 ## Kaggle Core Workspace
 
 The AI/data-processing baseline lives in [`kaggle/`](kaggle/).
 
 It includes a Kaggle-ready script, sample advisory-zone data, sample hazard observations, weak-label generation, baseline model training, metrics, and `risk_export_for_app.json` export for future web-app integration.
+
+The next data upgrade is also prepared there:
+
+- `AgriShield_Real_Data_Preparation.ipynb`
+- `agrishield_real_data_prep.py`
+- `data_contracts/`
+
+Use these files when the team has real rainfall, storm-track, or observed-impact rows to merge before training.
 
 ## Run Locally
 

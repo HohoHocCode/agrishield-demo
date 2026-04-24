@@ -1,0 +1,5 @@
+table_name,provider,source_url,access_date,license_or_terms,spatial_resolution,temporal_resolution,notes
+rainfall_daily.csv,UC Santa Barbara Climate Hazards Center,https://www.chc.ucsb.edu/data/chirps3,2026-04-24,Check provider terms before redistribution,about 0.05 degree,daily,Use CHIRPS v3 or another documented rainfall source
+rainfall_daily.csv,NASA POWER,https://power.larc.nasa.gov/api/pages/,2026-04-24,Check provider terms before redistribution,point or gridded,daily,Alternative rainfall source for quick prototype extraction
+storm_track_points.csv,NOAA NCEI IBTrACS,https://www.ncei.noaa.gov/products/international-best-track-archive,2026-04-24,Check provider terms before redistribution,track point,typically 3 to 6 hourly,Historical tropical cyclone best-track source
+flood_extent,Sentinel-1 via Copernicus or NASA ASF,https://www.earthdata.nasa.gov/data/platforms/space-based-platforms/sentinel-1,2026-04-24,Check provider terms before redistribution,SAR scene,event based,Use later for flood extent labels or validation

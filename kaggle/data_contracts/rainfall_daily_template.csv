@@ -1,0 +1,3 @@
+date,zone_id,rainfall_mm,rainfall_normal_72h_mm,rainfall_source,source_url,notes
+2022-09-28,da-nang-dai-loc-vu-gia,185,95,CHIRPS or NASA POWER,https://www.chc.ucsb.edu/data/chirps3,Example row; replace with verified daily rainfall
+2022-09-28,da-nang-dien-ban-hoi-an,160,88,CHIRPS or NASA POWER,https://power.larc.nasa.gov/api/pages/,Example row; replace with verified daily rainfall

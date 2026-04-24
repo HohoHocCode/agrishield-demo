@@ -18,6 +18,21 @@ It does the following:
 - Trains a baseline model for composite risk score and severity class.
 - Exports predictions, metrics, a model card, and `risk_export_for_app.json`.
 
+## V1.1 Real-Data Preparation Layer
+
+The next layer is now prepared in:
+
+```text
+kaggle/AgriShield_Real_Data_Preparation.ipynb
+kaggle/agrishield_real_data_prep.py
+kaggle/data_contracts/
+```
+
+It accepts optional rainfall, storm-track, and event-label tables, then exports
+a cleaned `hazard_observations.csv` that the baseline training notebook can use.
+This keeps the model explainable while allowing the label source to improve
+incrementally.
+
 ## Input Tables
 
 ### `advisory_zones.csv`
@@ -79,7 +94,7 @@ After the demo:
 
 ## Data Sources To Add Later
 
-- Storm tracks: IBTrACS or official typhoon bulletins.
+- Storm tracks: NOAA NCEI IBTrACS or official typhoon bulletins.
 - Rainfall: CHIRPS, NASA POWER, ERA5, or national hydromet feeds.
 - Flood proxy: Sentinel-1 SAR flood extent for selected events.
 - Boundaries: verified Vietnam administrative/advisory boundaries.
