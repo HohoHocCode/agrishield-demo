@@ -4,6 +4,12 @@ AgriShield is a Next.js demo for the Asian Hackathon for Green Future 2026, Trac
 
 The v1 demo focuses on one product story: convert multi-hazard risk signals into explainable rice-farming actions for Central Vietnam advisory zones.
 
+## Live Demo
+
+- Public app: https://agrishield-demo.vercel.app
+- Source repo: https://github.com/HohoHocCode/agrishield-demo
+- Recommended demo flow: choose a zone, switch rice stage, replay Typhoon Noru 2022, then read the Vietnamese alert preview.
+
 ## What V1 Includes
 
 - Current risk map for Da Nang City and Hue City pilot advisory zones.
@@ -27,6 +33,13 @@ The risk score is a transparent decision-support indicator and does not replace 
 - Static TypeScript data and pure scoring functions
 - npm
 
+## Competition Package
+
+- [30-second pitch](docs/pitch-30s.md)
+- [3-minute demo script](docs/demo-script-3min.md)
+- [Judge Q&A prep](docs/judge-qna.md)
+- [Roadmap V2](docs/roadmap-v2.md)
+
 ## Run Locally
 
 ```bash
@@ -42,6 +55,12 @@ Open `http://localhost:3000`.
 npm run lint
 npm run build
 ```
+
+## Current Limitations
+
+- Demo signals are static, not live operational weather feeds.
+- The map is a lightweight advisory visualization, not official GIS boundaries.
+- Vercel deployment works, but GitHub auto-deploy integration still needs dashboard-side connection.
 
 ## References
 
