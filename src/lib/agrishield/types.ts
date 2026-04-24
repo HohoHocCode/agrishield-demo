@@ -109,3 +109,36 @@ export interface ReplayFrame {
   };
   zoneScores: Record<string, number>;
 }
+
+export interface ModelZonePrediction {
+  zoneId: string;
+  zoneName: string;
+  currentAdmin: string;
+  timestamp: string;
+  modelPredictedCompositeScore: number;
+  modelPredictedSeverity: Severity;
+  weakCompositeScore: number;
+  weakFloodScore: number;
+  weakTyphoonScore: number;
+  labelSource: string;
+}
+
+export interface ModelSnapshot {
+  generatedAt: string;
+  modelPurpose: string;
+  claimBoundary: string;
+  zones: ModelZonePrediction[];
+}
+
+export interface ModelTrainingMetrics {
+  backend: string;
+  rows: number;
+  trainRows: number;
+  testRows: number;
+  scoreMetrics: {
+    mae: number;
+    rmse: number;
+  };
+  severityAccuracy: number;
+  labelSourceCounts: Record<string, number>;
+}

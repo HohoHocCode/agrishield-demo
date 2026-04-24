@@ -27,6 +27,11 @@ import {
   severityLabel,
   severityTone,
 } from "@/lib/agrishield/engine";
+import {
+  modelPredictionByZoneId,
+  modelSnapshot,
+  modelTrainingMetrics,
+} from "@/lib/agrishield/model-snapshot";
 import type { CropStage, HazardRisk, ReplayFrame, Severity, Zone } from "@/lib/agrishield/types";
 
 const numberFormatter = new Intl.NumberFormat("en-US");
@@ -344,6 +349,129 @@ function RiskDetail({ assessment }: { assessment: ReturnType<typeof assessZone> 
             ))}
           </ul>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function AIModelSnapshot({ assessment }: { assessment: ReturnType<typeof assessZone> }) {
+  const prediction = modelPredictionByZoneId.get(assessment.zone.id);
+  const modelScore = prediction?.modelPredictedCompositeScore ?? null;
+  const modelSeverity = prediction?.modelPredictedSeverity ?? assessment.severity;
+  const delta = modelScore === null ? null : modelScore - assessment.compositeScore;
+  const generatedDate = new Intl.DateTimeFormat("en", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  }).format(new Date(modelSnapshot.generatedAt));
+
+  return (
+    <section
+      className="rounded-lg border border-stone-200 bg-white p-4 shadow-sm"
+      data-testid="ai-model-snapshot"
+    >
+      <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-semibold uppercase text-stone-500">AI model snapshot</p>
+          <h2 className="text-xl font-semibold text-stone-950">Kaggle baseline risk model</h2>
+          <p className="mt-1 max-w-3xl text-sm leading-6 text-stone-600">
+            RandomForest baseline trained with weak supervision from the transparent rule engine.
+          </p>
+        </div>
+        <span className="inline-flex items-center gap-2 rounded-md border border-stone-200 bg-stone-50 px-3 py-2 text-xs font-semibold text-stone-700">
+          <Gauge className="h-4 w-4 text-emerald-700" />
+          {modelTrainingMetrics.backend.replaceAll("_", " ")}
+        </span>
+      </div>
+
+      <div className="grid gap-3 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase text-stone-500">Selected zone</p>
+              <p className="mt-1 text-base font-semibold text-stone-950">{assessment.zone.name}</p>
+            </div>
+            {modelScore !== null ? (
+              <ScorePill score={Number(modelScore.toFixed(1))} severity={modelSeverity} />
+            ) : (
+              <span className="rounded-md border border-stone-200 bg-white px-2 py-1 text-xs font-semibold text-stone-600">
+                No model row
+              </span>
+            )}
+          </div>
+
+          <div className="mt-4 grid gap-3">
+            <div>
+              <div className="mb-1 flex items-center justify-between text-xs font-semibold text-stone-600">
+                <span>Rule engine score</span>
+                <span className="font-mono">{assessment.compositeScore}</span>
+              </div>
+              <div className="h-2 rounded-full bg-stone-200">
+                <div
+                  className={cx("h-2 rounded-full", scoreTone(assessment.compositeScore))}
+                  style={{ width: `${assessment.compositeScore}%` }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <div className="mb-1 flex items-center justify-between text-xs font-semibold text-stone-600">
+                <span>AI model score</span>
+                <span className="font-mono">{modelScore?.toFixed(1) ?? "n/a"}</span>
+              </div>
+              <div className="h-2 rounded-full bg-stone-200">
+                <div
+                  className={cx("h-2 rounded-full", scoreTone(modelScore ?? 0))}
+                  style={{ width: `${modelScore ?? 0}%` }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 grid gap-2 text-xs leading-5 text-stone-600">
+            <p>
+              Delta vs rule engine:{" "}
+              <span className="font-mono font-semibold text-stone-950">
+                {delta === null ? "n/a" : `${delta >= 0 ? "+" : ""}${delta.toFixed(1)}`}
+              </span>
+            </p>
+            <p>Snapshot generated: {generatedDate}</p>
+            <p>Label source: {prediction?.labelSource.replaceAll("_", " ") ?? "n/a"}</p>
+          </div>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-3">
+          <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
+            <p className="text-xs font-semibold uppercase text-stone-500">Rows</p>
+            <p className="mt-2 font-mono text-2xl font-bold text-stone-950">
+              {modelTrainingMetrics.rows}
+            </p>
+            <p className="mt-1 text-xs leading-5 text-stone-600">
+              {modelTrainingMetrics.trainRows} train / {modelTrainingMetrics.testRows} test
+            </p>
+          </div>
+          <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
+            <p className="text-xs font-semibold uppercase text-stone-500">Score error</p>
+            <p className="mt-2 font-mono text-2xl font-bold text-stone-950">
+              {modelTrainingMetrics.scoreMetrics.mae}
+            </p>
+            <p className="mt-1 text-xs leading-5 text-stone-600">
+              MAE, RMSE {modelTrainingMetrics.scoreMetrics.rmse}
+            </p>
+          </div>
+          <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
+            <p className="text-xs font-semibold uppercase text-stone-500">Severity acc.</p>
+            <p className="mt-2 font-mono text-2xl font-bold text-stone-950">
+              {Math.round(modelTrainingMetrics.severityAccuracy * 100)}%
+            </p>
+            <p className="mt-1 text-xs leading-5 text-stone-600">Weak-label validation</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm leading-6 text-amber-950">
+        <AlertTriangle className="mr-2 inline h-4 w-4" />
+        {modelSnapshot.claimBoundary} The model is shown as a baseline AI layer, not an official
+        warning source.
       </div>
     </section>
   );
@@ -707,6 +835,7 @@ export function AgriShieldDashboard() {
       </div>
 
       <div className="mx-auto grid max-w-7xl gap-4 px-4 pb-8 sm:px-6 lg:px-8">
+        <AIModelSnapshot assessment={assessment} />
         <ActionChecklist
           actions={actions}
           onSelectStage={setSelectedStage}

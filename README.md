@@ -14,6 +14,7 @@ The v1 demo focuses on one product story: convert multi-hazard risk signals into
 
 - Current risk map for Da Nang City and Hue City pilot advisory zones.
 - Rule-based heavy rain/flood and typhoon scoring.
+- Kaggle-trained baseline AI model snapshot for comparing model risk against rule-engine risk.
 - Rice-only action checklist by crop stage.
 - Vietnamese mock alert preview for farmer-facing communication.
 - Typhoon Noru 2022 Time Machine replay across five moments.

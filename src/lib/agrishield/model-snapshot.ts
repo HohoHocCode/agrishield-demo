@@ -1,0 +1,100 @@
+import type { ModelSnapshot, ModelTrainingMetrics } from "./types";
+
+export const modelSnapshot = {
+  generatedAt: "2026-04-24T08:29:00.240316+00:00",
+  modelPurpose: "AgriShield district-scale advisory risk baseline",
+  claimBoundary: "Decision-support indicator; no commune or village precision claimed.",
+  zones: [
+    {
+      zoneId: "da-nang-dai-loc-vu-gia",
+      zoneName: "Dai Loc - Vu Gia river corridor",
+      currentAdmin: "Da Nang City",
+      timestamp: "2022-09-28T21:00:00+00:00",
+      modelPredictedCompositeScore: 84.1,
+      modelPredictedSeverity: "high",
+      weakCompositeScore: 84,
+      weakFloodScore: 96,
+      weakTyphoonScore: 52,
+      labelSource: "weak_rule_label",
+    },
+    {
+      zoneId: "da-nang-dien-ban-hoi-an",
+      zoneName: "Dien Ban - Hoi An lowland rice belt",
+      currentAdmin: "Da Nang City",
+      timestamp: "2022-09-28T21:00:00+00:00",
+      modelPredictedCompositeScore: 78.51,
+      modelPredictedSeverity: "high",
+      weakCompositeScore: 78,
+      weakFloodScore: 84,
+      weakTyphoonScore: 63,
+      labelSource: "weak_rule_label",
+    },
+    {
+      zoneId: "da-nang-hoa-vang",
+      zoneName: "Hoa Vang upland-irrigated belt",
+      currentAdmin: "Da Nang City",
+      timestamp: "2022-09-28T21:00:00+00:00",
+      modelPredictedCompositeScore: 61.34,
+      modelPredictedSeverity: "guarded",
+      weakCompositeScore: 61,
+      weakFloodScore: 65,
+      weakTyphoonScore: 52,
+      labelSource: "weak_rule_label",
+    },
+    {
+      zoneId: "da-nang-thang-binh-coastal",
+      zoneName: "Thang Binh coastal plain",
+      currentAdmin: "Da Nang City",
+      timestamp: "2022-09-28T21:00:00+00:00",
+      modelPredictedCompositeScore: 82.46,
+      modelPredictedSeverity: "high",
+      weakCompositeScore: 83,
+      weakFloodScore: 90,
+      weakTyphoonScore: 64,
+      labelSource: "weak_rule_label",
+    },
+    {
+      zoneId: "hue-lagoon-rice",
+      zoneName: "Hue lagoon rice and aquaculture edge",
+      currentAdmin: "Hue City",
+      timestamp: "2022-09-28T21:00:00+00:00",
+      modelPredictedCompositeScore: 61.15,
+      modelPredictedSeverity: "guarded",
+      weakCompositeScore: 62,
+      weakFloodScore: 69,
+      weakTyphoonScore: 43,
+      labelSource: "weak_rule_label",
+    },
+    {
+      zoneId: "hue-phong-dien-buffer",
+      zoneName: "Phong Dien inland buffer",
+      currentAdmin: "Hue City",
+      timestamp: "2022-09-28T21:00:00+00:00",
+      modelPredictedCompositeScore: 48.61,
+      modelPredictedSeverity: "guarded",
+      weakCompositeScore: 48,
+      weakFloodScore: 54,
+      weakTyphoonScore: 31,
+      labelSource: "weak_rule_label",
+    },
+  ],
+} satisfies ModelSnapshot;
+
+export const modelTrainingMetrics = {
+  backend: "sklearn_random_forest",
+  rows: 270,
+  trainRows: 202,
+  testRows: 68,
+  scoreMetrics: {
+    mae: 2.885,
+    rmse: 3.625,
+  },
+  severityAccuracy: 0.882,
+  labelSourceCounts: {
+    weak_rule_label: 270,
+  },
+} satisfies ModelTrainingMetrics;
+
+export const modelPredictionByZoneId = new Map(
+  modelSnapshot.zones.map((prediction) => [prediction.zoneId, prediction]),
+);

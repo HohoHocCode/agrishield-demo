@@ -59,6 +59,18 @@ kaggle/working/agrishield_outputs/
 
 The notebook is self-contained. If you do not attach any Kaggle dataset, it will train on the embedded sample data. If you attach a dataset named `agrishield-core` containing `advisory_zones.csv` and `hazard_observations.csv`, it will use that dataset instead.
 
+If Kaggle does not show the nested output folder clearly, run the final packaging cell. It creates:
+
+```text
+/kaggle/working/agrishield_outputs.zip
+/kaggle/working/risk_export_for_app.json
+/kaggle/working/training_metrics.json
+/kaggle/working/predictions.csv
+/kaggle/working/model_card.md
+```
+
+The ZIP is the easiest file to download from the right-side Output panel.
+
 ## Important Claim Boundary
 
 This is a baseline decision-support model, not a production warning system. The current label source is weak supervision from the transparent rule engine. Real deployment should replace or calibrate labels with observed flood extent, verified damage reports, official warnings, and partner hydromet data.
