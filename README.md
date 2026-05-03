@@ -39,6 +39,7 @@ The risk score is a transparent decision-support indicator and does not replace 
 - [30-second pitch](docs/pitch-30s.md)
 - [3-minute demo script](docs/demo-script-3min.md)
 - [Judge Q&A prep](docs/judge-qna.md)
+- [App spec](docs/app-spec.md)
 - [Roadmap V2](docs/roadmap-v2.md)
 - [Core AI and data plan](docs/core-ai-data-plan.md)
 - [Real-data upgrade plan](docs/real-data-upgrade-plan.md)
