@@ -42,6 +42,7 @@ The risk score is a transparent decision-support indicator and does not replace 
 - [Roadmap V2](docs/roadmap-v2.md)
 - [Core AI and data plan](docs/core-ai-data-plan.md)
 - [Real-data upgrade plan](docs/real-data-upgrade-plan.md)
+- [Team handoff plan](docs/team-handoff-plan.md)
 
 ## Kaggle Core Workspace
 
